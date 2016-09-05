@@ -6,13 +6,13 @@ import java.util.Random;
 public class RandomHash<K,V> extends Hashtable<K,V>
 {
     private Integer counter = 0;
-    private Hashtable<Integer, K> counterToKeyMap = new Hashtable();
-    private Hashtable<K,ValueWrapper<V>> internalHashtable = new Hashtable();
-    private Random r = new Random();
+    private final Hashtable<Integer, K> counterToKeyMap = new Hashtable<>();
+    private final Hashtable<K,ValueWrapper<V>> internalHashtable = new Hashtable<>();
+    private final Random r = new Random();
 
     public static void main( String[] args )
     {
-        RandomHash<Integer,Integer> rh = new RandomHash();
+        RandomHash<Integer,Integer> rh = new RandomHash<>();
         for (int i = 0; i < 10; i++) {
             rh.put(i,i);
         }
@@ -38,13 +38,13 @@ public class RandomHash<K,V> extends Hashtable<K,V>
     public synchronized V put(K key, V value) {
         counter ++;
         counterToKeyMap.put(counter, key);
-        internalHashtable.put(key, new ValueWrapper(counter, value));
+        internalHashtable.put(key, new ValueWrapper<>(counter, value));
         return value;
     }
 
     public synchronized V getRandom() {
         int tmp = r.nextInt(counter);
-        while (counterToKeyMap.containsKey(tmp) == false) {
+        while (!counterToKeyMap.containsKey(tmp)) {
             tmp = r.nextInt(counter);
         }
         return internalHashtable.get(counterToKeyMap.get(tmp)).value;
@@ -60,11 +60,11 @@ public class RandomHash<K,V> extends Hashtable<K,V>
         return null;
     }
 
-    private class ValueWrapper<V> {
+    private class ValueWrapper<T> {
         final Integer counter;
-        final V value;
+        T value;
 
-        ValueWrapper(Integer counter, V value) {
+        ValueWrapper(Integer counter, T value) {
             this.counter = counter;
             this.value = value;
         }
