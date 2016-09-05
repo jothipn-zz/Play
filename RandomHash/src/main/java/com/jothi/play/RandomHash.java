@@ -25,6 +25,14 @@ public class RandomHash<K,V> extends Hashtable<K,V>
         for (int i = 0; i < 5; i++) {
             System.out.println("Iter " + i + ", Value: " + rh.getRandom());
         }
+
+        rh.remove(1);
+        rh.remove(8);
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Iter " + i + ", Value: " + rh.getRandom());
+        }
+
     }
 
     RandomHash() {}
