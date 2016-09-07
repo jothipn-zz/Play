@@ -6,6 +6,7 @@ import java.util.Random;
 public class RandomHash<K,V> extends Hashtable<K,V>
 {
     private Integer counter = 0;
+    // Do the following need to be hashtable or hashmap is fine?
     private final Hashtable<Integer, K> counterToKeyMap = new Hashtable<>();
     private final Hashtable<K,ValueWrapper<V>> internalHashtable = new Hashtable<>();
     private final Random r = new Random();
@@ -38,6 +39,7 @@ public class RandomHash<K,V> extends Hashtable<K,V>
     RandomHash() {}
 
     @Override
+    // VV: error conditions: if key is not present...
     public synchronized V get(Object key) {
         return internalHashtable.get(key).value;
     }
