@@ -10,14 +10,15 @@ public class GrayCodeConvertor
     }
 
     public GrayCodeConvertor() {}
-
+    // I did not fully understand the logic here.
+    // The question was to get grayCode for a given number and size.. Are yoiu returning entire array?
     public static int[] getGrayCode(int size) {
         int[] retVal = new int[(int) Math.pow(2, size)];
         if (size == 1) {
             retVal[0] = 0;
             retVal[1] = 1;
             return retVal;
-        } else {
+        } else { // VV: Do we need else here?
             int prevArrSize = (int) Math.pow(2, size - 1);
             int currArrSize = (int) Math.pow(2, size);
             int[] prev = getGrayCode(size - 1);
