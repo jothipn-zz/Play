@@ -45,7 +45,7 @@ public class RandomHash<K,V> extends Hashtable<K,V>
     @Override
     public synchronized V put(K key, V value) {
         /** Can we avoid incrementing the counter and reuse the last value? 
-         * /
+         */
         counter ++;
         counterToKeyMap.put(counter, key);
         internalHashtable.put(key, new ValueWrapper<>(counter, value));
