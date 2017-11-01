@@ -10,7 +10,7 @@ import java.util.Map;
 public class TelemetryClientTest {
 
     private final TelemetryClient telemetryClient;
-    private static final String Prefix = "OOO";
+    private static final String Prefix = "PPP";
 
     public TelemetryClientTest() {
         this.telemetryClient = new TelemetryClient();
@@ -31,33 +31,33 @@ public class TelemetryClientTest {
 
         long start = System.currentTimeMillis();
 
-        Duration durtion = new Duration(1,1,1,1,1);
-        tct.getTelemetryClient().trackDependency("td", "cn",durtion,true);
-//        for (int i = 0; i < 50000; i++) {
-//            String eventName = Prefix + i;
-//            tct.getTelemetryClient().trackEvent(eventName, props, null);
-//            tct.getTelemetryClient().flush();
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+//        Duration durtion = new Duration(1,1,1,1,1);
+//        tct.getTelemetryClient().trackDependency("td", "cn",durtion,true);
 
-//        long end = System.currentTimeMillis();
-//        long postingTime = end - start;
+        for (int i = 0; i < 50000; i++) {
+            String eventName = Prefix + i;
+            tct.getTelemetryClient().trackEvent(eventName, props, null);
+            tct.getTelemetryClient().flush();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        long end = System.currentTimeMillis();
+        long postingTime = end - start;
 //        start = System.currentTimeMillis();
-        tct.getTelemetryClient().flush();
+//        tct.getTelemetryClient().flush();
 //        end = System.currentTimeMillis();
 
-//        System.out.println("Prefix: " + Prefix + " Post time: " + postingTime + ", Flush took: " +
-//                (end - start));
+        System.out.println("Prefix: " + Prefix + " Post time: " + postingTime + ", Flush took: " +
+                (end - start));
 //
 //        try {
 //            Thread.sleep(10000);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        System.out.println("Done");
     }
 }
