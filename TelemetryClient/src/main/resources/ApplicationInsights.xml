@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationInsights xmlns="http://schemas.microsoft.com/ApplicationInsights/2013/Settings" schemaVersion="2014-05-30">
     <InstrumentationKey>141295ac-df9a-48b8-b2e6-3054915c666e</InstrumentationKey>
+    <SDKLogger/>
 </ApplicationInsights>
